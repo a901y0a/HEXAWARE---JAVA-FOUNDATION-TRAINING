@@ -1,0 +1,62 @@
+//Database Creation:
+CREATE DATABASE insurancedb;
+USE insurancedb;
+
+//Tables Creation:
+Policy Table:
+==============
+CREATE TABLE Policy (
+    policyId INT PRIMARY KEY,
+    policyName VARCHAR(100) NOT NULL,
+    premiumAmount DOUBLE NOT NULL
+);
+Claim Table:
+=============
+CREATE TABLE Claim (
+    claimId INT PRIMARY KEY,
+    claimNumber VARCHAR(50) NOT NULL,
+    dateFiled DATE NOT NULL,
+    claimAmount DOUBLE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    policyId INT,
+    clientId INT,
+    FOREIGN KEY (policyId) REFERENCES Policy(policyId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (clientId) REFERENCES Client(clientId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+Client Table:
+==============
+CREATE TABLE Client (
+    clientId INT PRIMARY KEY,
+    clientName VARCHAR(100) NOT NULL,
+    contactInfo VARCHAR(255),
+    policyId INT,
+    FOREIGN KEY (policyId) REFERENCES Policy(policyId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+User Table:
+============
+CREATE TABLE User (
+    userId INT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(50) DEFAULT 'user' -- e.g., 'admin', 'agent', 'user'
+);
+Payment Table:
+===============
+CREATE TABLE Payment (
+    paymentId INT PRIMARY KEY,
+    paymentDate DATE NOT NULL,
+    paymentAmount DOUBLE NOT NULL,
+    clientId INT,
+    FOREIGN KEY (clientId) REFERENCES Client(clientId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+
