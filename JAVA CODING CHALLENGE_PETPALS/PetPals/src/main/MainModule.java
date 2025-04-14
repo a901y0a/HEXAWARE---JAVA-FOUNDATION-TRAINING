@@ -28,7 +28,7 @@ public class MainModule {
             scanner.nextLine(); // Consume newline
 
             switch (choice) {
-                case 1: // Add Pet
+                case 1: 
                     System.out.println("Enter pet type (Dog/Cat):");
                     String petType = scanner.nextLine();
                     System.out.println("Enter pet name:");
@@ -61,14 +61,14 @@ public class MainModule {
                     }
                     break;
 
-                case 2: // List Available Pets
+                case 2: 
                     System.out.println("Available Pets:");
                     for (Pet p : petShelter.listAvailablePets()) {
                         System.out.println(p);
                     }
                     break;
 
-                case 3: // Add Donation
+                case 3: 
                     System.out.println("Enter donor name:");
                     String donorName = scanner.nextLine();
                     System.out.println("Enter donation amount:");
@@ -91,15 +91,15 @@ public class MainModule {
                     System.out.println("Donation added successfully.");
                     break;
 
-                case 4: // List Donations
+                case 4: 
                     System.out.println("Donations:");
                     for (Donation donation : donationDAO.getAllDonations()) {
                         System.out.println(donation.getDonationDate()+", "+donation.getDonorName());
                     }
                     break;
 
-                case 5: // Exit
-                    System.out.println("Exiting...");
+                case 5: 
+                    System.out.println("Exiting the System...");
                     scanner.close();
                     return;
 
